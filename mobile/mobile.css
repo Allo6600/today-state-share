@@ -1,0 +1,9 @@
+.gl{margin-top:6px}
+a.btn{text-decoration:none;display:inline-block}
+.tk .tkl{display:flex;gap:8px;align-items:flex-start}
+.tk .tkl input{margin-top:5px;width:18px;height:18px}
+.tk.done .tkl span{text-decoration:line-through;color:var(--ink-3)}
+.tka{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tk.A{border-left:4px solid var(--za)}.tk.B{border-left:4px solid var(--zb)}.tk.C{border-left:4px solid var(--zc)}
+.btn,.seg button,.cal button{min-height:40px}
+select.in{min-height:36px}

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RHYTHM</title>
+<link rel="icon" href="icon.png">
+<link rel="stylesheet" href="panel.css">
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>RHYTHM</h1>
+      <div class="sub2">PERSONAL RHYTHM DESIGN</div>
+    </div>
+    <span id="today" class="muted"></span>
+  </header>
+  <p class="tagline">自分のリズムで、最大限のパフォーマンスを。</p>
+
+  <section id="now" aria-live="polite"></section>
+
+  <section id="feelBox" hidden>
+    <h2>今日の体調</h2>
+    <div class="seg" id="feel" role="group" aria-label="今日の体調">
+      <button type="button" data-f="light">軽い</button>
+      <button type="button" data-f="normal">ふつう</button>
+      <button type="button" data-f="heavy">重い</button>
+    </div>
+  </section>
+
+  <section id="advice"></section>
+
+  <section id="tasks"></section>
+
+  <section>
+    <div class="row">
+      <h2>カレンダー</h2>
+      <button type="button" id="recBtn" class="btn" aria-pressed="false">月経を記録</button>
+    </div>
+    <p id="recHint" class="hint" hidden aria-live="polite"></p>
+    <div class="row nav">
+      <button type="button" class="btn" id="prev" aria-label="前の月">‹</button>
+      <strong id="monthTitle"></strong>
+      <button type="button" class="btn" id="next" aria-label="次の月">›</button>
+      <button type="button" class="btn" id="goToday">今日</button>
+    </div>
+    <div id="cal" class="cal"></div>
+    <div class="legend" id="legend"></div>
+    <div id="detail" class="detail"></div>
+  </section>
+
+  <section>
+    <details class="set">
+      <summary>設定(A・B・Cの名前と色)</summary>
+      <div class="row sethead">
+        <p class="muted">記号・名前・色を、自分の使いやすい形に変えられます。</p>
+        <button type="button" id="setReset" class="btn small">もとに戻す</button>
+      </div>
+      <div id="setRows"></div>
+
+      <div class="phtbl-wrap">
+        <table class="phtbl">
+          <caption>時期ごとの状態と設計案</caption>
+          <thead><tr><th scope="col">時期</th><th scope="col">状態</th><th scope="col">設計案</th></tr></thead>
+          <tbody>
+            <tr class="rA"><th scope="row">A 卵胞期</th><td>月経開始から排卵まで(長さは可変)。前半は月経中の症状が残ったり、後半は一時的な下腹部痛が出たりする人もいる。<sup class="rf">3</sup></td><td><ul><li>新しい学習や難しい作業を置く。</li><li>強度を上げる運動を入れる。</li><li>気分が上向く日に人と会う予定を入れる。</li></ul></td></tr>
+            <tr class="rB"><th scope="row">B 黄体期</th><td>排卵後から次の月経まで(平均12.4日、幅7〜17日)。排卵後に基礎体温が0.2〜0.3℃ほど上がり、高めに続く。<sup class="rf">12</sup>月経前の5日間に、PMS症状が出る人がいる。<sup class="rf">3, 4</sup></td><td><ul><li>難しい作業は、月経の約1週間前までに前倒しする。</li><li>珈琲は1杯まで(個人用の目安。医学的な上限ではありません)。</li><li>月経前はいらだちや不安が出る日があると予告しておく。</li></ul></td></tr>
+            <tr class="rC"><th scope="row">C 月経期</th><td>出血のある期間(アプリの記録データでは平均約4日、中央値4日)。<sup class="rf">13</sup>腹痛、腰痛、頭痛、疲れ、睡眠や胃腸の変化が出る人もいる。痛みは、開始の約24時間後にピークになる。<sup class="rf">5</sup></td><td><ul><li>予定変更しやすい作業単位を選ぶ。</li><li>痛みの出ない範囲で、軽い運動にする。</li><li>炭酸は控えてHOTドリンクにする。</li></ul></td></tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </details>
+  </section>
+
+  <section>
+    <details class="set">
+      <summary>参考:周期とコンディションの調査</summary>
+      <div class="info" role="group" aria-label="周期とコンディションの調査">
+        <p class="muted">「良い・やや良い」と答えた人の割合(JISS利用の女性アスリート233名。元の図の「良い」と「やや良い」を合算)<sup class="rf">8</sup></p>
+        <div class="ph"><span class="m">月経期</span><span class="f">卵胞期(初期に月経期を含む)</span><span class="l">黄体期</span></div>
+        <div class="cols">
+          <div style="--v:15.4"><b>15.4%</b><i></i><span>月経期</span></div>
+          <div class="peak" style="--v:29.2"><b>29.2%</b><i></i><span>月経終了後<br>約1週間</span></div>
+          <div style="--v:15.9"><b>15.9%</b><i></i><span>月経間の中間<br>排卵前後</span></div>
+          <div class="low" style="--v:9.9"><b>9.9%</b><i></i><span>次の月経前<br>約1週間</span></div>
+        </div>
+        <p class="take"><strong>月経終了後の約1週間</strong>がもっとも高く、月経前の約1週間が最も低い結果でした。</p>
+
+        <h3>別の調査:最も調子がよい時期(トップアスリート630名)<sup class="rf">6</sup></h3>
+        <div class="hb">
+          <div class="top" style="--v:54.6"><span>月経後数日</span><i></i><b>54.6%</b></div>
+          <div class="top" style="--v:21.9"><span>月経終了直後</span><i></i><b>21.9%</b></div>
+          <div style="--v:8.4"><span>月経中</span><i></i><b>8.4%</b></div>
+          <div style="--v:6.0"><span>黄体期</span><i></i><b>6.0%</b></div>
+          <div class="none" style="--v:9.1"><span>周期と関係なし</span><i></i><b>9.1%</b></div>
+        </div>
+        <p class="take">「月経後」の2つを合わせると <strong>76.5%</strong>。</p>
+        <p class="note">上段は調査の表現を平均的な周期の上に大まかに置いたもので、毎日の連続測定ではありません。個人差が大きいので、自分の記録とあわせて目安にしてください。</p>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <details class="set">
+      <summary>刺激物についての調査</summary>
+      <div class="info">
+        <h3>コーヒー</h3>
+        <div class="grid">
+          <div class="grp"><h4><em class="up">リスク↑</em></h4>
+            <ul class="pts">
+              <li>カフェインの多量摂取は、月経痛のリスク因子でした(大学生のメタ分析、オッズ比2.08)。<sup class="rf">1</sup></li>
+              <li>1日3杯超のコーヒーは、月経痛と関連しました(女性医学生498名、調整オッズ比3.25、ただし信頼区間が広い 1.32〜8.04)。<sup class="rf">7</sup></li>
+              <li>1日1杯超のコーヒーは、PMSと関連しました(タイの看護師423名、オッズ比2.32)。<sup class="rf">9</sup></li>
+            </ul></div>
+          <div class="grp"><h4><em class="mix">個人差大</em></h4>
+            <ul class="pts">
+              <li>コーヒーを飲む人は、中等度〜重度の月経痛が少ない傾向でした(中国の女子大学生、オッズ比0.45)。<sup class="rf">2</sup></li>
+            </ul></div>
+          <div class="grp"><h4><em class="hyp">参考</em></h4>
+            <ul class="pts">
+              <li>カフェインを除いたコーヒーでも、胃酸の分泌と血中のガストリンが高まりました(健康な男性8名の実験)。コーヒーをよく飲む人40名の試験では、唾液中のガストリンが一時的に上がりましたが、自己申告の胃腸症状への影響は見られませんでした。<sup class="rf">10, 11</sup></li>
+            </ul></div>
+          <div class="grp"><h4><em class="gap">未確認</em></h4>
+            <ul class="pts">
+              <li>月経に特化した胃腸症状の研究は、確認できていません。</li>
+            </ul></div>
+        </div>
+
+        <h3>ほかの刺激物</h3>
+        <div class="grid">
+          <div class="grp"><h4><em class="up">リスク↑</em></h4>
+            <ul class="pts">
+              <li>冷たい飲み物は、月経痛のリスク因子でした(同じメタ分析、オッズ比1.72)。<sup class="rf">1</sup></li>
+              <li>炭酸飲料は、月経痛のリスク因子でした(中国の女子大学生、オッズ比1.24)。摂取の頻度が高いほど、痛みが重いという関連も見られました。<sup class="rf">2</sup></li>
+            </ul></div>
+                    <div class="grp"><h4><em class="hyp">参考</em></h4>
+            <ul class="pts">
+              <li>辛味は、胃腸が過敏な一部の人で、胸やけや腹部の不快感を誘発することがあります(個人差が大きく、月経に特化した証拠ではありません)。<sup class="rf">14, 15</sup></li>
+            </ul></div>
+          <div class="grp"><h4><em class="gap">未確認</em></h4>
+            <ul class="pts">
+              <li>辛い食べ物・アルコールと月経痛の関連を示す研究は、確認できていません。</li>
+            </ul></div>
+        </div>
+        <p class="note">オッズ比は、1より大きいほど「その習慣のある人で起こりやすい」という目安です(1より小さいと、起こりにくい)。すべて観察研究で、因果は確認されていません。</p>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <details class="set plain">
+      <summary>参考文献</summary>
+      <ol class="refl">
+        <li>Liu J, ほか. Study on the influencing factors of primary dysmenorrhea in female college students: systematic review and meta-analysis. Medicine (Baltimore) 2024. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11631030/" target="_blank" rel="noopener noreferrer">PMC11631030</a></li>
+        <li>Wang L, ほか. Associations between soft drinks intake and primary dysmenorrhea among Chinese undergraduate female students. Scientific Reports 2024. <a href="https://doi.org/10.1038/s41598-024-71802-8" target="_blank" rel="noopener noreferrer">doi:10.1038/s41598-024-71802-8</a></li>
+        <li>Bull JR, ほか. Real-world menstrual cycle characteristics of more than 600,000 menstrual cycles. npj Digital Medicine 2019. <a href="https://www.nature.com/articles/s41746-019-0152-7" target="_blank" rel="noopener noreferrer">nature.com</a></li>
+        <li>PMS(月経前症候群)の診断基準の解説(ACOG基準). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4890701/" target="_blank" rel="noopener noreferrer">PMC4890701</a></li>
+        <li>月経痛. MSDマニュアル家庭版. <a href="https://www.msdmanuals.com/home/women-s-health-issues/menstrual-disorders-and-abnormal-uterine-bleeding/menstrual-cramps" target="_blank" rel="noopener noreferrer">msdmanuals.com</a></li>
+        <li>国立スポーツ科学センター(JISS). Health Management for Female Athletes Ver.3, 2018(図13, トップアスリート630名). <a href="https://www.jpnsport.go.jp/hpsc/study/publication/fdgpo20000000hsp-att/HMFAver3.pdf" target="_blank" rel="noopener noreferrer">PDF</a></li>
+        <li>Adem MU, ほか. Primary dysmenorrhea among female medical students at Haramaya university: a cross sectional study in Harar, Eastern Ethiopia. Scientific Reports 2025. <a href="https://doi.org/10.1038/s41598-025-23680-x" target="_blank" rel="noopener noreferrer">doi:10.1038/s41598-025-23680-x</a></li>
+        <li>日本スポーツ振興センター. 女性アスリートのためのコンディショニングブック(JISS利用の女性アスリート233名). <a href="https://www.jpnsport.go.jp/hpsc/study/publication/female_conditioning.html" target="_blank" rel="noopener noreferrer">jpnsport.go.jp</a></li>
+        <li>Chayachinda C, ほか. Premenstrual syndrome in Thai nurses(看護師423名). J Psychosom Obstet Gynaecol 2008. <a href="https://pubmed.ncbi.nlm.nih.gov/18608818/" target="_blank" rel="noopener noreferrer">PubMed 18608818</a></li>
+        <li>Feldman EJ, ほか. Gastric acid and gastrin response to decaffeinated coffee and a peptone meal. JAMA 1981. <a href="https://pubmed.ncbi.nlm.nih.gov/6894624/" target="_blank" rel="noopener noreferrer">PubMed 6894624</a></li>
+        <li>Papakonstantinou E, ほか. Acute effects of coffee consumption on self-reported gastrointestinal symptoms, blood pressure and stress indices in healthy individuals. Nutr J 2016. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4791892/" target="_blank" rel="noopener noreferrer">PMC4791892</a></li>
+        <li>Schmalenberger KM, ほか. How to study the menstrual cycle: Practical tools and recommendations. Psychoneuroendocrinology 2021. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8363181/" target="_blank" rel="noopener noreferrer">PMC8363181</a></li>
+        <li>Li K, ほか. Characterizing physiological and symptomatic variation in menstrual cycles using self-tracked mobile-health data(37.8万人). npj Digital Medicine 2020. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7250828/" target="_blank" rel="noopener noreferrer">PMC7250828</a></li>
+        <li>Führer M, ほか. A placebo-controlled trial of an oral capsaicin load in patients with functional dyspepsia. Neurogastroenterol Motil 2011. <a href="https://pubmed.ncbi.nlm.nih.gov/21883698/" target="_blank" rel="noopener noreferrer">PubMed 21883698</a></li>
+        <li>Patcharatrakul T, ほか. Acute effects of red chili on gastric accommodation and upper gastrointestinal symptoms in healthy volunteers and GERD patients. Nutrients 2020. <a href="https://pubmed.ncbi.nlm.nih.gov/33291700/" target="_blank" rel="noopener noreferrer">PubMed 33291700</a></li>
+      </ol>
+    </details>
+  </section>
+
+  <footer>
+    <p id="cycleNote" hidden></p>
+    <p>作業計画のための目安であり、医療上の判断ではありません。体調が心配なときは、医療機関に相談してください。</p>
+    <p>記録はこのブラウザの中だけに保存され、外部には送りません。</p>
+    <p>制作者・ソースコード: <a href="https://github.com/Allo6600/today-state-share" target="_blank" rel="noopener noreferrer">GitHub Allo6600</a></p>
+    <button type="button" id="wipe" class="btn small">記録をすべて消す</button>
+  </footer>
+</main>
+<script src="core.js"></script>
+<script src="panel.js"></script>
+<script src="tasks.js"></script>
+</body>
+</html>

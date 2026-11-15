@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "RHYTHM",
+  "version": "0.1.0",
+  "description": "自分のリズムで、最大限のパフォーマンスを。周期と体調を考慮して、作業や予定を置く日の目安を表示する作業計画ツール。データはこのブラウザの中だけ。",
+  "minimum_chrome_version": "114",
+  "permissions": [
+    "storage",
+    "sidePanel",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "panel.html",
+    "open_in_tab": true
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "RHYTHM を開く",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "optional_host_permissions": [
+    "https://calendar.google.com/*"
+  ],
+  "homepage_url": "https://github.com/Allo6600/today-state-share"
+}

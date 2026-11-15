@@ -1,0 +1,19 @@
+# 作業用メモ・下書き(公開しない)
+HANDOFF.md
+README.txt
+texts/REVIEW.md
+texts/DRAFT-notice-privacy.md
+texts/original.json
+
+# 個人の予定が写っている画像・作業用の画像・古い ZIP
+タスク管理の御供に.png
+色を変えられる.png
+OFFのとき.png
+ONで色を付けられる.png
+icon2.png
+jiss-phase-condition-comparison.png
+*.zip
+
+# ツールの一時ファイル
+__pycache__/
+.claude/
