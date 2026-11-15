@@ -159,14 +159,7 @@ function renderNow(S, L, mens) {
   const el = $('#now'); el.replaceChildren();
   const today = todayStr();
   if (!S.length) {
-    el.append(h('div', { class: 'card' },
-      h('div', { class: 'big' }, 'はじめに'),
-      h('p', { class: 'sub empty' }, '最後の月経が始まった日を教えてください。おおよそで大丈夫です。あとから直せます。'),
-      h('div', { class: 'quick' },
-        ...[['今日', 0], ['昨日', 1], ['2日前', 2], ['3日前', 3], ['1週間前', 7], ['2週間前', 14]].map(([lb, n]) =>
-          h('button', { type: 'button', class: 'btn', onclick: () => firstStart(addDays(today, -n)) }, lb))),
-      h('label', { class: 'sub pick' }, '別の日: ',
-        h('input', { type: 'date', max: today, 'aria-label': '最後の月経が始まった日', onchange: (e) => { if (ISO.test(e.target.value)) firstStart(e.target.value); } }))));
+    el.append(h('div', { class: 'card' }, h('div', { class: 'big' }, 'さっそく記録しましょう！')));
     return;
   }
   const z = zoneAt(today, S, L.L, mens), next = addDays(z.st, z.len);
