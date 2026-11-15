@@ -77,10 +77,6 @@ details.set summary{cursor:pointer;font-weight:700;font-size:14px}
 .in.mark{width:3.4em;text-align:center}.in.name{flex:1}
 .in.color{width:38px;height:30px;padding:1px;cursor:pointer}
 
-.quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.quick .btn{font-size:15px;padding:8px 14px}
-.pick{margin-top:10px}
-.pick input{font:inherit;padding:4px 6px}
 
 /* 設定内の調査グラフ */
 .info{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);--acc:#2a6079;--acc-s:#b9cfd9}

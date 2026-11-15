@@ -185,6 +185,7 @@ function renderAdvice(S, mens) {
   if (!S.length) return;
   const today = todayStr(), feel = data.feel[today] || 'normal';
   document.querySelectorAll('#feel button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.f === feel)));
+  return; /* 「今日の目安」は表示しない */
   const D = buildDaily(null, today, feel, S, { mens, bleeding: isBleedDay(today, S) });
   if (!D.window.id) { el.append(h('p', { class: 'muted' }, trimNote(D.window.note))); return; }
   el.append(h('h2', null, '今日の目安 ', h('span', { class: 'muted' }, D.window.name + '(確かさ: ' + D.window.conf + ')')));
@@ -307,15 +308,7 @@ function recordTap(d) {
     store.save(); return;
   }
   data.starts.push(d); data.starts.sort(); store.save();
-  ui.hint = jp(d) + 'を月経の開始日にしました。終わった日があれば、その日をタップしてください(開始日だけでも大丈夫です)。';
-}
-
-/* 初回: 最後の月経の開始日を1回で入れる */
-function firstStart(d) {
-  if (!ISO.test(d) || d > todayStr()) return;
-  data.starts = [d]; data.ends = {}; store.save();
-  ui.month = d.slice(0, 7); ui.sel = todayStr(); ui.hint = '';
-  renderAll();
+  ui.hint = jp(d) + 'を月経の開始日にしました。続けて、終わりの日をタップしてください。';
 }
 
 function bind() {
